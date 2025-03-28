@@ -1,0 +1,1 @@
+import{b as o}from"./meta-JHHU1yu-.js";import"./config-DohaZlFR.js";function m({data:t}){const{title:e,abstract:r}=t.frontmatter;return o({title:e,description:r,prefix:"",ogImage:t.ogImage})}export{m as meta};
