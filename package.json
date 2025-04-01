@@ -35,19 +35,20 @@
     "three-stdlib": "^2.29.4",
     "@cloudflare/workers-types": "^3.2.0"
   },
+
   "devDependencies": {
     "@csstools/postcss-global-data": "^2.1.1",
     "@mapbox/rehype-prism": "^0.9.0",
     "@mdx-js/rollup": "^3.0.1",
     "@remix-run/dev": "^2.7.1",
-    "@storybook/addon-a11y": "^7.6.17",
+    "@storybook/addon-a11y": "^8.6.11",
     "@storybook/addon-essentials": "^8.6.11",
-    "@storybook/addon-interactions": "^7.6.17",
-    "@storybook/addon-links": "^7.6.17",
+    "@storybook/addon-interactions": "^8.6.11",
+    "@storybook/addon-links": "^8.6.11",
     "@storybook/blocks": "^8.6.11",
     "@storybook/react": "^8.6.11",
     "@storybook/react-vite": "^8.6.11",
-    "@storybook/test": "^7.6.17",
+    "@storybook/test": "^8.6.11",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
@@ -71,3 +72,4 @@
     "node": ">=19.9.0"
   }
 }
+
