@@ -1,4 +1,10 @@
 {
+  {
+  "version": 2,
+  "routes": [
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
   "builds": [
     {
       "src": "package.json",
@@ -10,10 +16,4 @@
       }
     }
   ]
-  {
-  "version": 2,
-  "routes": [
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
-}
 }
