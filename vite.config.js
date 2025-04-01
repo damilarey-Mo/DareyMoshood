@@ -16,11 +16,18 @@ const isStorybook = process.argv[1]?.includes('storybook');
 export default defineConfig({
   assetsInclude: ['**/*.glb', '**/*.hdr', '**/*.glsl'],
   build: {
+    outDir: 'dist', // ✅ Ensure Vite outputs to 'dist' for Vercel
     assetsInlineLimit: 1024,
-    chunkSizeWarningLimit: 2048 // Set to 1000 kB (1 MB) or any suitable value
+    chunkSizeWarningLimit: 2048, // ✅ Adjusted to prevent build warnings
   },
   server: {
     port: 7777,
+    historyApiFallback: true, // ✅ Ensures React Router/Remix works on refresh
+  },
+  resolve: {
+    alias: {
+      '@': '/src', // ✅ Optional alias for cleaner imports
+    },
   },
   plugins: [
     mdx({
@@ -38,4 +45,7 @@ export default defineConfig({
     }),
     jsconfigPaths(),
   ],
+  optimizeDeps: {
+    exclude: ['@remix-run/dev'], // ✅ Prevents unnecessary Remix dependencies from breaking build
+  },
 });
