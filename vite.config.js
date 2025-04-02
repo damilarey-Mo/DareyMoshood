@@ -1,5 +1,5 @@
 import {
-  vitePlugin as remix,
+  vitePlugin as remixPlugin,
   cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
 } from '@remix-run/dev';
 import { defineConfig } from 'vite';
@@ -11,16 +11,32 @@ import rehypeImgSize from 'rehype-img-size';
 import rehypeSlug from 'rehype-slug';
 import rehypePrism from '@mapbox/rehype-prism';
 
-const isStorybook = process.argv[1]?.includes('storybook');
+const isStorybook = process.argv.some(arg => arg.includes('storybook'));
 
 export default defineConfig({
   assetsInclude: ['**/*.glb', '**/*.hdr', '**/*.glsl'],
   build: {
+    outDir: 'dist', // ✅ Ensures Vite outputs to 'dist' for Vercel
     assetsInlineLimit: 1024,
-    chunkSizeWarningLimit: 2048 // Set to 1000 kB (1 MB) or any suitable value
+    chunkSizeWarningLimit: 2048, // ✅ Prevents build warnings
+    publicDir: 'public', // ✅ Ensures public assets are properly served
   },
   server: {
     port: 7777,
+    strictPort: true,
+    proxy: {}, // ✅ Keep empty for now to avoid conflicts
+    hmr: true,
+    watch: {
+      usePolling: true,
+    },
+    fallback: {
+      rewrites: [{ source: '**', destination: '/index.html' }], // ✅ Ensures React Router works properly
+    },
+  },
+  resolve: {
+    alias: {
+      '@': '/src', // ✅ Fix alias for imports
+    },
   },
   plugins: [
     mdx({
@@ -29,13 +45,18 @@ export default defineConfig({
       providerImportSource: '@mdx-js/react',
     }),
     remixCloudflareDevProxy(),
-    remix({
+    remixPlugin({
       routes(defineRoutes) {
         return defineRoutes(route => {
           route('/', 'routes/home/route.js', { index: true });
+          route('/about', 'routes/about/route.js');
+          route('/contact', 'routes/contact/route.js');
         });
       },
     }),
     jsconfigPaths(),
   ],
+  optimizeDeps: {
+    exclude: ['@remix-run/dev'], // ✅ Prevents Remix dependencies from breaking the build
+  },
 });
