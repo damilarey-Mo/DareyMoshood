@@ -48,9 +48,9 @@ export default defineConfig({
     remixPlugin({
       routes(defineRoutes) {
         return defineRoutes(route => {
-          route('/', 'routes/home/route.js', { index: true });
-          route('/about', 'routes/about/route.js');
-          route('/contact', 'routes/contact/route.js');
+          route('/', 'routes/home/route.jsx', { index: true });
+          route('/about', 'routes/about/route.jsx');
+          route('/contact', 'routes/contact/route.jsx');
         });
       },
     }),
