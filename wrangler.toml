@@ -1,6 +1,7 @@
 kv_namespaces = [
   { id = "MY_KV", binding="MY_KV" }
 ]
+compatibility_date = "2025-03-10"
 
 [vars]
 NODE_ENV = "production"
