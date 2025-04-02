@@ -2,3 +2,17 @@ kv_namespaces = [
   { id = "MY_KV", binding="MY_KV" }
 ]
 compatibility_date = "2025-03-10"
+name = "your-project-name"
+compatibility_date = "2024-04-02"
+
+[vars]
+NODE_ENV = "production"
+
+[build]
+command = "npm run build"
+
+[site]
+bucket = "./public"
+
+[pages]
+pages_build_output_dir = "./build"
